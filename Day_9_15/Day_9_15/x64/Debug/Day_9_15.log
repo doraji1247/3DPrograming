@@ -1,0 +1,17 @@
+﻿  Programing.cpp
+D:\3DPrograming\3주차\Day_9_15\Day_9_15\Programing.cpp(49,18): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+D:\3DPrograming\3주차\Day_9_15\Day_9_15\Programing.cpp(111,69): warning C4244: '=': 'double'에서 'T'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+D:\3DPrograming\3주차\Day_9_15\Day_9_15\Programing.cpp(112,68): warning C4244: '=': 'double'에서 'T'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+D:\3DPrograming\3주차\Day_9_15\Day_9_15\Programing.cpp(193,24): warning C4305: '+=': 'double'에서 'float'(으)로 잘립니다.
+D:\3DPrograming\3주차\Day_9_15\Day_9_15\Programing.cpp(200,25): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+D:\3DPrograming\3주차\Day_9_15\Day_9_15\Programing.cpp(204,25): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+D:\3DPrograming\3주차\Day_9_15\Day_9_15\Programing.cpp(257,19): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Day_9_15.vcxproj -> D:\3DPrograming\3주차\Day_9_15\x64\Debug\Day_9_15.exe
