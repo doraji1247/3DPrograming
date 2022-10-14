@@ -265,7 +265,6 @@ void Update()
         string fps_s = "FPS : " + to_string(fps);
         cout << fps_s << endl;
 
-
     }
 }
 
