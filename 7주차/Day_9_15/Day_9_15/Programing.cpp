@@ -41,12 +41,10 @@ Transform transform;  //world 행렬이 될 transform
 
 //<문제>////////전역변수 쓰는곳////////////////////////////////////////////////////////////
 
-
-
-float transl = 0;
-float Rota = 0;
-float Scalesize = 1;
-float Scal = 0.01;
+float ta = 0;
+float ra = 0;
+float sa = 1;
+float ssa = 0.01;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -121,7 +119,7 @@ void Init()
     }
 
 
-    ////트랜스폼 초기화 (기본형 제공)
+    //트랜스폼 초기화 (기본형 제공)
     transform.translate = glm::mat3(
         1, 0, 0,
         0, 1, 0,
@@ -158,11 +156,37 @@ void Update()
         //3. Scale은 초당 0.01씩 최대 1.3배까지 늘어났다가 0.7배까지 줄어들도록 만드시오 (반복)
         //   (1.3배 이상이 되면 줄어들고 0.7배 이하가 되면 다시 늘어나게 만드시오)
 
+        ta += 0.001;
 
+        transform.translate = glm::mat3(
+            1, 0, 0,
+            0, 1, 0,
+            ta, 0, 1
+        );
 
+        ra += 1.0;
+
+        transform.rotation = glm::mat3(
+            glm::cos(glm::radians(ra)), -glm::sin(glm::radians(ra)), 0,
+            glm::sin(glm::radians(ra)), glm::cos(glm::radians(ra)), 0,
+            0, 0, 1
+        );
+        sa = sa + ssa;
+        if (sa >= 1.3)
+        {
+            ssa = -0.01;
+        }
+        else if (sa <= 0.7)
+        {
+            ssa = +0.01;
+        }
+        transform.scale = glm::mat3(
+            sa, 0, 0,
+            0, sa, 0,
+            0, 0, 1
+        );
 
         //////////////////////////////////////////////////////////////////////////////////////////
-
 
         for (int i = 0; i < 360; i++)
         {
@@ -174,41 +198,12 @@ void Update()
             transformedStar[i].pos = transform.translate * transform.rotation * transform.scale * star[i].pos;
         }
 
-        transform.translate = glm::mat3(
-            1, 0, 0,
-            0, 1, 0,
-            transl, 0, 1
-        );
-        transform.rotation = glm::mat3(
-            glm::cos(glm::radians(Rota)), -glm::sin(glm::radians(Rota)), 0,
-            glm::sin(glm::radians(Rota)), glm::cos(glm::radians(Rota)), 0,
-            0, 0, 1
-        );
-        transform.scale = glm::mat3(
-            Scalesize, 0, 0,
-            0, Scalesize, 0,
-            0, 0, 1
-        );
 
-        transl += 0.001;
-        Rota += 1;
-
-        Scalesize = Scalesize + Scal;
-
-        if (Scalesize >= 1.3)
-        {
-            Scal = -0.01;
-        }
-        else if (Scalesize <= 0.7)
-        {
-            Scal = +0.01;
-        }
-
-        //////////////////////////////////////////////////////////////////////////////////////////
 
         //색 초기화
         glClearColor(.0f, 0.0f, 0.0f, 0.1f);
         glClear(GL_COLOR_BUFFER_BIT);
+
         //선두께
         glLineWidth(7.0f);
         //오망성 그리기
